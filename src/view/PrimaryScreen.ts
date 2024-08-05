@@ -2,12 +2,13 @@ import promptSync from 'prompt-sync';
 import Doctor from '../model/Doctor';
 import DoctorController from '../control/DoctorController';
 import Human from '../model/Human';
-import HumanController from '../control/HumanController';
+import ClientController from '../control/ClientController';
+import Client from '../model/Client';
 
 export default class PrimaryScreen {
     constructor(
         private doctorController: DoctorController,
-        private humanController: HumanController,
+        private clientController: ClientController,
         private id = 0,
     ) {}
     private prompt = promptSync();
@@ -17,22 +18,28 @@ export default class PrimaryScreen {
         while (!showScreen) {
             // Get user input
             //console.clear();
-            let choice = this.prompt('Escolha:\n1 - Cadastro\n2 - Listar\n3 - Sair\n');
+            let choice = this.prompt(
+                'Escolha:\n1 - Cadastro\n2 - Listar\n3 - Mostrar Eu\n5 - Sair\n',
+            );
 
             switch (choice) {
                 case '1':
                     // let doctor: Doctor = this.doctorController.getNewDoctor();
                     // this.registerDoctor(doctor);
 
-                    let human: Human = this.humanController.getNewHuman();
-                    this.registerHuman(human);
+                    let client: Client = this.clientController.getNewClient();
+                    this.registerHuman(client);
+
                     break;
 
                 case '2':
                     // this.doctorController.listAllDoctors();
-                    this.humanController.listAllHumans();
+                    this.clientController.listAllClients();
                     break;
                 case '3':
+                    this.clientController.getClient(0);
+                    break;
+                case '5':
                     showScreen = true;
                     break;
                 default:
@@ -52,15 +59,15 @@ export default class PrimaryScreen {
         this.doctorController.listAllDoctors();
     }
 
-    public registerHuman(human: Human): void {
-        human.setId(this.id);
+    public registerHuman(client: Client): void {
+        client.setId(this.id);
         this.id = this.id + 1;
         let name = this.prompt('Digite o seu nome: ');
-        human.setName(name);
+        client.setName(name);
         let age = Number(this.prompt('Digite a sua idade: '));
-        human.setAge(age);
+        client.setAge(age);
 
-        this.humanController.registerNewHuman(human);
+        this.clientController.registerNewClient(client);
         console.log('Deu certo');
     }
 }

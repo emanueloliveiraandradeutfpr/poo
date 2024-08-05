@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Human {
-    constructor() {
+    constructor(name, age, id = 0) {
         this.id = 0;
-        this.name = '';
         this.age = 0;
+        name ? (this.name = name) : name;
+        age ? (this.age = age) : age;
+        this.id = id;
     }
     getId() {
         return this.id;

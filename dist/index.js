@@ -10,7 +10,7 @@ let doguinho = new Dog_1.default();
 doguinho.setName('doguinho');
 doguinho.makeNoise();
 let doctor = new Doctor_1.default();
-doctor.setName("Test");
+doctor.setName('Test');
 doctor.getName();
 let startController = new BasicController_1.default();
 startController.startSystem();

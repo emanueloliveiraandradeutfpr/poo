@@ -1,6 +1,11 @@
 import Human from './Human';
 
 export default class Doctor extends Human {
+    constructor(name?: string, age?: number, crmv?: string, specialization?: string) {
+        super(name, age);
+        crmv ? (this.crmv = crmv) : crmv;
+        specialization ? (this.specialization = specialization) : specialization;
+    }
     private crmv: string = '';
     private specialization: string = '';
 

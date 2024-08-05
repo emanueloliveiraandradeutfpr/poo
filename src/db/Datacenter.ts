@@ -2,7 +2,7 @@
 //cabe ao Datacenter guardar, acessar e manipular os dados de
 
 import Doctor from '../model/Doctor';
-import Human from '../model/Human';
+import Client from '../model/Client';
 
 // FoodProduct e CleaningProduct
 export default class Datacenter {
@@ -20,17 +20,17 @@ export default class Datacenter {
         return this.doctors.length;
     }
 
-    public humans: Human[] = [];
+    public clients: Client[] = [];
 
-    public addNewHuman(human: Human): void {
-        this.humans.push(human);
+    public addNewClient(client: Client): void {
+        this.clients.push(client);
     }
 
-    public removeHuman(id: number): void {
-        this.humans.splice(id, 1);
+    public removeClient(id: number): void {
+        this.clients.splice(id, 1);
     }
 
-    public getHumansSize(): number {
-        return this.humans.length;
+    public getClientsSize(): number {
+        return this.clients.length;
     }
 }

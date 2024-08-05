@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class Datacenter {
     constructor() {
         this.doctors = [];
-        this.humans = [];
+        this.clients = [];
     }
     addNewDoctor(doctor) {
         this.doctors.push(doctor);
@@ -17,14 +17,14 @@ class Datacenter {
     getDoctorsSize() {
         return this.doctors.length;
     }
-    addNewHuman(human) {
-        this.humans.push(human);
+    addNewClient(client) {
+        this.clients.push(client);
     }
-    removeHuman(id) {
-        this.humans.splice(id, 1);
+    removeClient(id) {
+        this.clients.splice(id, 1);
     }
-    getHumansSize() {
-        return this.humans.length;
+    getClientsSize() {
+        return this.clients.length;
     }
 }
 exports.default = Datacenter;

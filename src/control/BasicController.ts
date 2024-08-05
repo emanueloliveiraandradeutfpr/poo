@@ -1,11 +1,11 @@
 import PrimaryScreen from '../view/PrimaryScreen';
+import ClientController from './ClientController';
 import DoctorController from './DoctorController';
-import HumanController from './HumanController';
 
 export default class BasicController {
     private primaryScreen: PrimaryScreen = new PrimaryScreen(
         new DoctorController(),
-        new HumanController(),
+        new ClientController(),
     );
 
     public startSystem(): void {

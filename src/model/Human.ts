@@ -1,7 +1,13 @@
 export default class Human {
     private id: number = 0;
-    private name: string = '';
+    private name!: string;
     private age: number = 0;
+
+    constructor(name?: string, age?: number, id: number = 0) {
+        name ? (this.name = name) : name;
+        age ? (this.age = age) : age;
+        this.id = id;
+    }
 
     public getId(): number {
         return this.id;
