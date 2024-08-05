@@ -8,7 +8,7 @@ export default class HumanController {
         return new Human();
     }
 
-    public registerNewDoctor(human: Human) {
+    public registerNewHuman(human: Human) {
         this.datacenter.addNewHuman(human);
     }
 

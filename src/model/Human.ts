@@ -17,10 +17,10 @@ export default class Human {
         this.name = name;
     }
 
-    private getAge(): number {
+    public getAge(): number {
         return this.age;
     }
-    private setAge(age: number): void {
+    public setAge(age: number): void {
         this.age = age;
     }
 }

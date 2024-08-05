@@ -1,12 +1,14 @@
-import PrimaryScreen from "../view/PrimaryScreen";
-import DoctorController from "./DoctorController";
+import PrimaryScreen from '../view/PrimaryScreen';
+import DoctorController from './DoctorController';
+import HumanController from './HumanController';
 
-export default class BasicController{
+export default class BasicController {
+    private primaryScreen: PrimaryScreen = new PrimaryScreen(
+        new DoctorController(),
+        new HumanController(),
+    );
 
-    private primaryScreen: PrimaryScreen = new PrimaryScreen(new DoctorController);
-    
-    public startSystem():void {
-       this.primaryScreen.getFirstScreen();
+    public startSystem(): void {
+        this.primaryScreen.getFirstScreen();
     }
-
 }

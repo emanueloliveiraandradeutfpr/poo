@@ -5,9 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const PrimaryScreen_1 = __importDefault(require("../view/PrimaryScreen"));
 const DoctorController_1 = __importDefault(require("./DoctorController"));
+const HumanController_1 = __importDefault(require("./HumanController"));
 class BasicController {
     constructor() {
-        this.primaryScreen = new PrimaryScreen_1.default(new DoctorController_1.default);
+        this.primaryScreen = new PrimaryScreen_1.default(new DoctorController_1.default(), new HumanController_1.default());
     }
     startSystem() {
         this.primaryScreen.getFirstScreen();

@@ -12,7 +12,7 @@ class HumanController {
     getNewHuman() {
         return new Human_1.default();
     }
-    registerNewDoctor(human) {
+    registerNewHuman(human) {
         this.datacenter.addNewHuman(human);
     }
     listAllHumans() {
