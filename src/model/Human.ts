@@ -2,6 +2,7 @@ export default class Human {
     private id: number = 0;
     private name: string = '';
     private age: number = 0;
+
     public getId(): number {
         return this.id;
     }
@@ -17,7 +18,7 @@ export default class Human {
     }
 
     private getAge(): number {
-        return this.id;
+        return this.age;
     }
     private setAge(age: number): void {
         this.age = age;

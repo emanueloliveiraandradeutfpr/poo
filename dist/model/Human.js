@@ -19,7 +19,7 @@ class Human {
         this.name = name;
     }
     getAge() {
-        return this.id;
+        return this.age;
     }
     setAge(age) {
         this.age = age;

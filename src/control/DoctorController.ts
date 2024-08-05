@@ -1,21 +1,18 @@
-import Datacenter from "../db/Datacenter"
-import Doctor from "../model/Doctor";
+import Datacenter from '../db/Datacenter';
+import Doctor from '../model/Doctor';
 
-export default class DoctorController{
+export default class DoctorController {
+    private datacenter: Datacenter = new Datacenter();
 
-    private datacenter: Datacenter =  new Datacenter();
-
-    
     public getNewDoctor(): Doctor {
-        return new Doctor()
+        return new Doctor();
     }
 
     public registerNewDoctor(doctor: Doctor) {
-        this.datacenter.addNewDoctor(doctor)
+        this.datacenter.addNewDoctor(doctor);
     }
 
     public listAllDoctors(): void {
         console.log(this.datacenter.doctors);
-        
     }
 }
