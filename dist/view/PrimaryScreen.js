@@ -55,6 +55,8 @@ class PrimaryScreen {
         client.setName(name);
         let age = Number(this.prompt('Digite a sua idade: '));
         client.setAge(age);
+        let genre = Number(this.prompt('Digite o seu genero, 1 para Masculino e 2 par Feminino'));
+        client.setGenre(genre);
         this.clientController.registerNewClient(client);
         console.log('Deu certo');
     }

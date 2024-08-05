@@ -30,7 +30,8 @@ export default class Animal {
         return this.breed;
     }
     public setBreed(breed: string): void {
-        this.breed = breed;0
+        this.breed = breed;
+        0;
     }
 
     public getWeight(): number {
@@ -40,8 +41,7 @@ export default class Animal {
         this.weight = weight;
     }
 
-    public makeNoise():void {
-        console.log("");
-        
+    public makeNoise(): void {
+        console.log('');
     }
 }

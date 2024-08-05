@@ -40,7 +40,7 @@ class Animal {
         this.weight = weight;
     }
     makeNoise() {
-        console.log("");
+        console.log('');
     }
 }
 exports.default = Animal;

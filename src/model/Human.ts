@@ -1,9 +1,12 @@
+import { Genre } from './Enum';
+
 export default class Human {
     private id: number = 0;
     private name!: string;
     private age: number = 0;
+    private genre: Genre = 0;
 
-    constructor(name?: string, age?: number, id: number = 0) {
+    constructor(name?: string, age?: number, id: number = 0, genre: Genre = 0) {
         name ? (this.name = name) : name;
         age ? (this.age = age) : age;
         this.id = id;
@@ -28,5 +31,13 @@ export default class Human {
     }
     public setAge(age: number): void {
         this.age = age;
+    }
+
+    public getGenre(): Genre {
+        return this.genre;
+    }
+
+    public setGenre(genre: Genre): void {
+        this.genre = genre;
     }
 }
