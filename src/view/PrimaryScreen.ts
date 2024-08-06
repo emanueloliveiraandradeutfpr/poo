@@ -4,6 +4,7 @@ import DoctorController from '../control/DoctorController';
 import Human from '../model/Human';
 import ClientController from '../control/ClientController';
 import Client from '../model/Client';
+import { Genre } from '../model/Enum';
 
 export default class PrimaryScreen {
     constructor(
@@ -27,8 +28,7 @@ export default class PrimaryScreen {
                     // let doctor: Doctor = this.doctorController.getNewDoctor();
                     // this.registerDoctor(doctor);
 
-                    let client: Client = this.clientController.getNewClient();
-                    this.registerHuman(client);
+                    this.registerHuman();
 
                     break;
 
@@ -59,19 +59,17 @@ export default class PrimaryScreen {
         this.doctorController.listAllDoctors();
     }
 
-    public registerHuman(client: Client): void {
-        client.setId(this.id);
-        this.id = this.id + 1;
+    public registerHuman(): void {
+        let id = this.id;
         let name = this.prompt('Digite o seu nome: ');
-        client.setName(name);
         let age = Number(this.prompt('Digite a sua idade: '));
-        client.setAge(age);
-
         let genre = Number(
-            this.prompt('Digite o seu genero, 1 para Masculino e 2 par Feminino'),
+            this.prompt('Digite o seu genero: 0 para "Masculino" ou  1 para Feminino'),
         );
-        client.setGenre(genre);
+        let client = this.clientController.getNewClient(name, age, id, genre);
+
         this.clientController.registerNewClient(client);
         console.log('Deu certo');
+        this.id = this.id + 1;
     }
 }

@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Human_1 = __importDefault(require("./Human"));
 class Doctor extends Human_1.default {
-    constructor(name, age, crmv, specialization) {
-        super(name, age);
+    constructor(name, age, id, genre, crmv, specialization) {
+        super(name, age, id, genre);
         this.crmv = '';
         this.specialization = '';
-        crmv ? (this.crmv = crmv) : crmv;
-        specialization ? (this.specialization = specialization) : specialization;
+        this.crmv = crmv;
+        this.specialization = specialization;
     }
     getCrmv() {
         return this.crmv;

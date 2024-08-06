@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Enum_1 = require("./Enum");
 class Human {
-    constructor(name, age, id = 0, genre = 0) {
+    constructor(name, age, id, genre) {
         this.id = 0;
         this.age = 0;
-        this.genre = 0;
-        name ? (this.name = name) : name;
-        age ? (this.age = age) : age;
+        this.genre = Enum_1.Genre.Male;
+        this.name = name;
+        this.age = age;
         this.id = id;
+        this.genre = genre;
     }
     getId() {
         return this.id;

@@ -6,9 +6,5 @@ let doguinho: Dog = new Dog();
 doguinho.setName('doguinho');
 doguinho.makeNoise();
 
-let doctor: Doctor = new Doctor();
-doctor.setName('Test');
-doctor.getName();
-
 let startController: BasicController = new BasicController();
 startController.startSystem();

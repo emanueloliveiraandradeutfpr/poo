@@ -1,10 +1,18 @@
+import { Genre } from './Enum';
 import Human from './Human';
 
 export default class Doctor extends Human {
-    constructor(name?: string, age?: number, crmv?: string, specialization?: string) {
-        super(name, age);
-        crmv ? (this.crmv = crmv) : crmv;
-        specialization ? (this.specialization = specialization) : specialization;
+    constructor(
+        name: string,
+        age: number,
+        id: number,
+        genre: Genre,
+        crmv: string,
+        specialization: string,
+    ) {
+        super(name, age, id, genre);
+        this.crmv = crmv;
+        this.specialization = specialization;
     }
     private crmv: string = '';
     private specialization: string = '';

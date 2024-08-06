@@ -9,8 +9,8 @@ class ClientController {
     constructor() {
         this.datacenter = new Datacenter_1.default();
     }
-    getNewClient() {
-        return new Client_1.default();
+    getNewClient(name, age, id, genre) {
+        return new Client_1.default(name, age, id, genre);
     }
     registerNewClient(client) {
         this.datacenter.addNewClient(client);

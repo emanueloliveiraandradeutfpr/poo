@@ -21,8 +21,7 @@ class PrimaryScreen {
                 case '1':
                     // let doctor: Doctor = this.doctorController.getNewDoctor();
                     // this.registerDoctor(doctor);
-                    let client = this.clientController.getNewClient();
-                    this.registerHuman(client);
+                    this.registerHuman();
                     break;
                 case '2':
                     // this.doctorController.listAllDoctors();
@@ -48,17 +47,15 @@ class PrimaryScreen {
         this.doctorController.registerNewDoctor(doctor);
         this.doctorController.listAllDoctors();
     }
-    registerHuman(client) {
-        client.setId(this.id);
-        this.id = this.id + 1;
+    registerHuman() {
+        let id = this.id;
         let name = this.prompt('Digite o seu nome: ');
-        client.setName(name);
         let age = Number(this.prompt('Digite a sua idade: '));
-        client.setAge(age);
-        let genre = Number(this.prompt('Digite o seu genero, 1 para Masculino e 2 par Feminino'));
-        client.setGenre(genre);
+        let genre = Number(this.prompt('Digite o seu genero: 0 para "Masculino" ou  1 para Feminino'));
+        let client = this.clientController.getNewClient(name, age, id, genre);
         this.clientController.registerNewClient(client);
         console.log('Deu certo');
+        this.id = this.id + 1;
     }
 }
 exports.default = PrimaryScreen;
