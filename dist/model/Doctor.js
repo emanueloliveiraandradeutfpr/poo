@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Human_1 = __importDefault(require("./Human"));
 class Doctor extends Human_1.default {
-    constructor(name, age, id, genre, crmv, specialization) {
-        super(name, age, id, genre);
+    constructor(name, age, id, crmv, specialization) {
+        super(name, age, id);
         this.crmv = '';
         this.specialization = '';
         this.crmv = crmv;
@@ -23,6 +23,9 @@ class Doctor extends Human_1.default {
     }
     setSpecialization(specialization) {
         this.specialization = specialization;
+    }
+    sayHello() {
+        console.log('Ola paciente');
     }
 }
 exports.default = Doctor;

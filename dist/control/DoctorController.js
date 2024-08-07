@@ -9,8 +9,8 @@ class DoctorController {
     constructor() {
         this.datacenter = new Datacenter_1.default();
     }
-    getNewDoctor(name, age, id, genre, crmv, specialization) {
-        return new Doctor_1.default(name, age, id, genre, crmv, specialization);
+    getNewDoctor(name, age, id, crmv, specialization) {
+        return new Doctor_1.default(name, age, id, crmv, specialization);
     }
     registerNewDoctor(doctor) {
         this.datacenter.addNewDoctor(doctor);

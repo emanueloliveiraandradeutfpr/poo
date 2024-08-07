@@ -1,15 +1,20 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Animal_1 = __importDefault(require("./Animal"));
-class Cat extends Animal_1.default {
+class Cat {
+    constructor(age, breed, id, name, weight) {
+        this.bite();
+        this.makeNoise();
+        this.age = age;
+        this.breed = breed;
+        this.id = id;
+        this.name = name;
+        this.weight = weight;
+    }
     makeNoise() {
         console.log('Miau Miau');
     }
     bite() {
-        console.log('Mordiscando');
+        console.log('Arranhão');
     }
 }
 exports.default = Cat;
