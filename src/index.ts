@@ -1,9 +1,7 @@
 import BasicController from './control/BasicController';
-import Doctor from './model/Doctor';
 import Dog from './model/Dog';
 
-let doguinho: Dog = new Dog();
-doguinho.setName('doguinho');
+let doguinho: Dog = new Dog(2, 'test', 0, 'fofo', 5.5);
 doguinho.makeNoise();
 
 let startController: BasicController = new BasicController();

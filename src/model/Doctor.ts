@@ -1,4 +1,3 @@
-import { Genre } from './Enum';
 import Human from './Human';
 
 export default class Doctor extends Human {
@@ -6,11 +5,10 @@ export default class Doctor extends Human {
         name: string,
         age: number,
         id: number,
-        genre: Genre,
         crmv: string,
         specialization: string,
     ) {
-        super(name, age, id, genre);
+        super(name, age, id);
         this.crmv = crmv;
         this.specialization = specialization;
     }
@@ -29,5 +27,9 @@ export default class Doctor extends Human {
     }
     public setSpecialization(specialization: string): void {
         this.specialization = specialization;
+    }
+
+    sayHello(): void {
+        console.log('Ola paciente');
     }
 }

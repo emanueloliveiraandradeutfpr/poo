@@ -1,10 +1,7 @@
 import promptSync from 'prompt-sync';
 import Doctor from '../model/Doctor';
 import DoctorController from '../control/DoctorController';
-import Human from '../model/Human';
 import ClientController from '../control/ClientController';
-import Client from '../model/Client';
-import { Genre } from '../model/Enum';
 
 export default class PrimaryScreen {
     constructor(
@@ -63,13 +60,12 @@ export default class PrimaryScreen {
         let id = this.id;
         let name = this.prompt('Digite o seu nome: ');
         let age = Number(this.prompt('Digite a sua idade: '));
-        let genre = Number(
-            this.prompt('Digite o seu genero: 0 para "Masculino" ou  1 para Feminino'),
-        );
-        let client = this.clientController.getNewClient(name, age, id, genre);
+
+        let client = this.clientController.getNewClient(name, age, id);
 
         this.clientController.registerNewClient(client);
         console.log('Deu certo');
+        client.sayHello();
         this.id = this.id + 1;
     }
 }

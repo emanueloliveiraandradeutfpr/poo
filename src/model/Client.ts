@@ -1,10 +1,12 @@
-import Animal from './Animal';
-import { Genre } from './Enum';
+import Animal from './IAnimal';
 import Human from './Human';
 
 export default class Client extends Human {
-    constructor(name: string, age: number, id: number, genre: Genre) {
-        super(name, age, id, genre);
+    constructor(name: string, age: number, id: number) {
+        super(name, age, id);
     }
-    private animals: Animal[] = [];
+
+    sayHello(): void {
+        console.log('Olá doutor');
+    }
 }

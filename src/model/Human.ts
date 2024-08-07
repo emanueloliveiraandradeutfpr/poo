@@ -1,16 +1,12 @@
-import { Genre } from './Enum';
-
-export default class Human {
-    private id: number = 0;
+export default abstract class Human {
+    private id!: number;
     private name!: string;
-    private age: number = 0;
-    private genre: Genre = Genre.Male;
+    private age!: number;
 
-    constructor(name: string, age: number, id: number, genre: Genre) {
+    constructor(name: string, age: number, id: number) {
         this.name = name;
         this.age = age;
         this.id = id;
-        this.genre = genre;
     }
 
     public getId(): number {
@@ -34,11 +30,5 @@ export default class Human {
         this.age = age;
     }
 
-    public getGenre(): Genre {
-        return this.genre;
-    }
-
-    public setGenre(genre: Genre): void {
-        this.genre = genre;
-    }
+    abstract sayHello(): void;
 }

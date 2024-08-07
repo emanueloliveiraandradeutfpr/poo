@@ -1,8 +1,6 @@
-import Animal from '../model/Animal';
+import Animal from '../model/IAnimal';
 import Client from '../model/Client';
 
 export default class ManagerController {
-    getNewAnimal(client: Client, animal: Animal) {
-        return;
-    }
+    getNewAnimal(client: Client, animal: Animal) {}
 }
