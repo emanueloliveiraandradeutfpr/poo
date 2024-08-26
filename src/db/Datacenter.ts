@@ -3,6 +3,9 @@
 
 import Doctor from '../model/Doctor';
 import Client from '../model/Client';
+import Dog from '../model/Dog';
+import Cat from '../model/Cat';
+import Animal from '../model/Animal';
 
 // FoodProduct e CleaningProduct
 export default class Datacenter {
@@ -32,5 +35,18 @@ export default class Datacenter {
 
     public getClientsSize(): number {
         return this.clients.length;
+    }
+
+    public animals: Animal[] = [];
+
+    public addNewAnimal<A extends Animal>(animal: A): void {
+        this.animals.push(animal);
+    }
+    public removeDog(id: number): void {
+        this.animals.splice(id, 1);
+    }
+
+    public getDogsSize(): number {
+        return this.animals.length;
     }
 }

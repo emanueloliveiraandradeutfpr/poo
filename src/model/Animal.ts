@@ -1,15 +1,14 @@
 export default class Animal {
-    private id: number = 0;
     private name: string = '';
     private age: number = 0;
     private breed: string = '';
     private weight: number = 0;
 
-    public getId(): number {
-        return this.id;
-    }
-    public setId(id: number): void {
-        this.id = id;
+    constructor(name: string, age: number, breed: string, weight: number) {
+        this.name = name;
+        this.age = age;
+        this.breed = breed;
+        this.weight = weight;
     }
 
     public getName(): string {
@@ -42,6 +41,10 @@ export default class Animal {
     }
 
     public makeNoise(): void {
+        console.log('');
+    }
+
+    public bite(): void {
         console.log('');
     }
 }

@@ -1,15 +1,15 @@
 import promptSync from 'prompt-sync';
-import Doctor from '../model/Doctor';
 import DoctorController from '../control/DoctorController';
-import Human from '../model/Human';
 import ClientController from '../control/ClientController';
-import Client from '../model/Client';
 import { Genre } from '../model/Enum';
+import AnimalController from '../control/AnimalController';
+import Dog from '../model/Dog';
 
 export default class PrimaryScreen {
     constructor(
         private doctorController: DoctorController,
         private clientController: ClientController,
+        private animalController: AnimalController,
         private id = 0,
     ) {}
     private prompt = promptSync();
@@ -20,7 +20,7 @@ export default class PrimaryScreen {
             // Get user input
             //console.clear();
             let choice = this.prompt(
-                'Escolha:\n1 - Cadastro\n2 - Listar\n3 - Mostrar Eu\n5 - Sair\n',
+                'Escolha:\n1 - Cadastro\n2 - Listar\n3 - Registrar animal\n5 - Sair\n',
             );
 
             switch (choice) {
@@ -28,16 +28,19 @@ export default class PrimaryScreen {
                     // let doctor: Doctor = this.doctorController.getNewDoctor();
                     // this.registerDoctor(doctor);
 
-                    this.registerHuman();
+                    // this.registerHuman();
+                    this.makeMe();
 
                     break;
 
                 case '2':
                     // this.doctorController.listAllDoctors();
                     this.clientController.listAllClients();
+                    this.animalController.listAllAnimals();
                     break;
                 case '3':
-                    this.clientController.getClient(0);
+                    this.registerAnimal();
+
                     break;
                 case '5':
                     showScreen = true;
@@ -49,7 +52,7 @@ export default class PrimaryScreen {
         }
     }
 
-    public registerDoctor(doctor: Doctor): void {
+    public registerDoctor(doctor: any): void {
         let name = this.prompt('Digite o nome do medico: ');
         doctor.setName(name);
         let specialization = this.prompt('Digite a especialização do medico: ');
@@ -59,17 +62,43 @@ export default class PrimaryScreen {
         this.doctorController.listAllDoctors();
     }
 
+    public makeMe(): void {
+        let client = this.clientController.getNewClient('Emanuel', 22, 0, Genre.Male);
+        this.clientController.registerNewClient(client);
+        this.id = this.id + 1;
+    }
+
     public registerHuman(): void {
         let id = this.id;
         let name = this.prompt('Digite o seu nome: ');
         let age = Number(this.prompt('Digite a sua idade: '));
+
         let genre = Number(
-            this.prompt('Digite o seu genero: 0 para "Masculino" ou  1 para Feminino'),
+            this.prompt('Digite o seu genero: 0 para "Masculino" ou  1 para Feminino: ', {
+                value: '0',
+            }),
         );
+        genre === 0 ? (genre = Genre.Male) : (genre = Genre.Female);
+
         let client = this.clientController.getNewClient(name, age, id, genre);
 
         this.clientController.registerNewClient(client);
         console.log('Deu certo');
+        this.id = this.id + 1;
+        console.log(this.clientController.getClient(0));
+    }
+
+    public registerAnimal(): void {
+        let id = this.id;
+
+        let name = this.prompt('Digite o nome do seu pet: ');
+        let age = Number(this.prompt('Digite a idade do seu pet: '));
+        let breed = this.prompt('Digite a raça do seu pet: ');
+        let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
+        let test = this.animalController.getNewDog(id, name, age, breed, weight);
+
+        this.animalController.registerAnimal(test);
+
         this.id = this.id + 1;
     }
 }

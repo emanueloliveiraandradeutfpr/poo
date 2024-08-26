@@ -1,18 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Animal {
-    constructor() {
-        this.id = 0;
+    constructor(name, age, breed, weight) {
         this.name = '';
         this.age = 0;
         this.breed = '';
         this.weight = 0;
-    }
-    getId() {
-        return this.id;
-    }
-    setId(id) {
-        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.breed = breed;
+        this.weight = weight;
     }
     getName() {
         return this.name;
@@ -40,6 +37,9 @@ class Animal {
         this.weight = weight;
     }
     makeNoise() {
+        console.log('');
+    }
+    bite() {
         console.log('');
     }
 }

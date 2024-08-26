@@ -1,7 +1,5 @@
 import Datacenter from '../db/Datacenter';
-import Cat from '../model/Cat';
 import Client from '../model/Client';
-import Dog from '../model/Dog';
 import { Genre } from '../model/Enum';
 
 export default class ClientController {
@@ -19,10 +17,7 @@ export default class ClientController {
         console.log(this.datacenter.clients);
     }
 
-    public getClient(id: number): void {
-        console.log(this.datacenter.clients[id]);
-    }
-    public registerNewAnimal(id: number, cat?: Cat, dog?: Dog) {
-        console.log(this.datacenter.clients[id]);
+    public getClient(id: number): Client {
+        return this.datacenter.clients[id];
     }
 }

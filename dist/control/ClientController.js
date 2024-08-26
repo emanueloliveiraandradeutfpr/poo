@@ -19,10 +19,7 @@ class ClientController {
         console.log(this.datacenter.clients);
     }
     getClient(id) {
-        console.log(this.datacenter.clients[id]);
-    }
-    registerNewAnimal(id, cat, dog) {
-        console.log(this.datacenter.clients[id]);
+        return this.datacenter.clients[id];
     }
 }
 exports.default = ClientController;
