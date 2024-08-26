@@ -4,12 +4,14 @@ import ClientController from '../control/ClientController';
 import { Genre } from '../model/Enum';
 import AnimalController from '../control/AnimalController';
 import Dog from '../model/Dog';
+import ManagerAnimalController from '../control/ManagerAnimalController';
 
 export default class PrimaryScreen {
     constructor(
         private doctorController: DoctorController,
         private clientController: ClientController,
         private animalController: AnimalController,
+        private managerController: ManagerAnimalController,
         private id = 0,
     ) {}
     private prompt = promptSync();
@@ -63,7 +65,9 @@ export default class PrimaryScreen {
     }
 
     public makeMe(): void {
-        let client = this.clientController.getNewClient('Emanuel', 22, 0, Genre.Male);
+        let id = this.id;
+
+        let client = this.clientController.getNewClient('Emanuel', 22, id, Genre.Male);
         this.clientController.registerNewClient(client);
         this.id = this.id + 1;
     }
@@ -91,14 +95,19 @@ export default class PrimaryScreen {
     public registerAnimal(): void {
         let id = this.id;
 
-        let name = this.prompt('Digite o nome do seu pet: ');
-        let age = Number(this.prompt('Digite a idade do seu pet: '));
-        let breed = this.prompt('Digite a raça do seu pet: ');
-        let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
-        let test = this.animalController.getNewDog(id, name, age, breed, weight);
+        // let name = this.prompt('Digite o nome do seu pet: ');
+        // let age = Number(this.prompt('Digite a idade do seu pet: '));
+        // let breed = this.prompt('Digite a raça do seu pet: ');
+        // let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
+        // let test = this.animalController.getNewDog(id, name, age, breed, weight);
+        let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
 
         this.animalController.registerAnimal(test);
-
+        this.managerController.linkAnimalClient(
+            this.clientController.getClient(0),
+            test.getDogID(),
+        );
+        console.log();
         this.id = this.id + 1;
     }
 }

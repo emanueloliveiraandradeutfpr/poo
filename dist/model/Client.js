@@ -7,6 +7,7 @@ const Human_1 = __importDefault(require("./Human"));
 class Client extends Human_1.default {
     constructor(name, age, id, genre) {
         super(name, age, id, genre);
+        this.animals = [];
     }
 }
 exports.default = Client;

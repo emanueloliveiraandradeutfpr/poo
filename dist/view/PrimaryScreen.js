@@ -6,10 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const Enum_1 = require("../model/Enum");
 class PrimaryScreen {
-    constructor(doctorController, clientController, animalController, id = 0) {
+    constructor(doctorController, clientController, animalController, managerController, id = 0) {
         this.doctorController = doctorController;
         this.clientController = clientController;
         this.animalController = animalController;
+        this.managerController = managerController;
         this.id = id;
         this.prompt = (0, prompt_sync_1.default)();
     }
@@ -52,7 +53,8 @@ class PrimaryScreen {
         this.doctorController.listAllDoctors();
     }
     makeMe() {
-        let client = this.clientController.getNewClient('Emanuel', 22, 0, Enum_1.Genre.Male);
+        let id = this.id;
+        let client = this.clientController.getNewClient('Emanuel', 22, id, Enum_1.Genre.Male);
         this.clientController.registerNewClient(client);
         this.id = this.id + 1;
     }
@@ -72,12 +74,15 @@ class PrimaryScreen {
     }
     registerAnimal() {
         let id = this.id;
-        let name = this.prompt('Digite o nome do seu pet: ');
-        let age = Number(this.prompt('Digite a idade do seu pet: '));
-        let breed = this.prompt('Digite a raça do seu pet: ');
-        let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
-        let test = this.animalController.getNewDog(id, name, age, breed, weight);
+        // let name = this.prompt('Digite o nome do seu pet: ');
+        // let age = Number(this.prompt('Digite a idade do seu pet: '));
+        // let breed = this.prompt('Digite a raça do seu pet: ');
+        // let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
+        // let test = this.animalController.getNewDog(id, name, age, breed, weight);
+        let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
         this.animalController.registerAnimal(test);
+        this.managerController.linkAnimalClient(this.clientController.getClient(0), test.getDogID());
+        console.log();
         this.id = this.id + 1;
     }
 }

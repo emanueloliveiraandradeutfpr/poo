@@ -29,6 +29,14 @@ export default class Datacenter {
         this.clients.push(client);
     }
 
+    public findClient(id: number): Client | undefined {
+        let client = this.clients.find((client) => {
+            console.log('Ola');
+
+            client.getId() === id;
+        });
+        return client;
+    }
     public removeClient(id: number): void {
         this.clients.splice(id, 1);
     }

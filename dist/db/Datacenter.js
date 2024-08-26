@@ -21,6 +21,13 @@ class Datacenter {
     addNewClient(client) {
         this.clients.push(client);
     }
+    findClient(id) {
+        let client = this.clients.find((client) => {
+            console.log('Ola');
+            client.getId() === id;
+        });
+        return client;
+    }
     removeClient(id) {
         this.clients.splice(id, 1);
     }
