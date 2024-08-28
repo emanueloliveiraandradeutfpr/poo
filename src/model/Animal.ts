@@ -1,4 +1,5 @@
-export default class Animal {
+export default abstract class Animal {
+    protected abstract id: number;
     private name: string = '';
     private age: number = 0;
     private breed: string = '';
@@ -10,6 +11,8 @@ export default class Animal {
         this.breed = breed;
         this.weight = weight;
     }
+
+    abstract getId(): number;
 
     public getName(): string {
         return this.name;

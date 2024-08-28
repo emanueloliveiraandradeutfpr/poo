@@ -22,5 +22,11 @@ class AnimalController {
     registerAnimal(animal) {
         this.datacenter.addNewAnimal(animal);
     }
+    findMyAnimals(ids) {
+        ids === null || ids === void 0 ? void 0 : ids.forEach((id) => {
+            let res = this.datacenter.animals.find((animal) => animal.getId() === id);
+            console.log(res);
+        });
+    }
 }
 exports.default = AnimalController;

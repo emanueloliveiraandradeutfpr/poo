@@ -7,13 +7,13 @@ const Animal_1 = __importDefault(require("./Animal"));
 class Cat extends Animal_1.default {
     constructor(id, name, age, breed, weight) {
         super(name, age, breed, weight);
-        this.catId = id;
+        this.id = id;
     }
-    getDogID() {
-        return this.catId;
+    getId() {
+        return this.id;
     }
-    setDogID(id) {
-        this.catId = id;
+    setId(id) {
+        this.id = id;
     }
     makeNoise() {
         console.log('Miau Miau');

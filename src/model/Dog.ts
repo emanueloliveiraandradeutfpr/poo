@@ -1,17 +1,17 @@
 import Animal from './Animal';
 
 export default class Dog extends Animal {
-    private dogId!: number;
+    id!: number;
     constructor(id: number, name: string, age: number, breed: string, weight: number) {
         super(name, age, breed, weight);
-        this.dogId = id;
+        this.id = id;
     }
 
-    getDogID(): number {
-        return this.dogId;
+    getId(): number {
+        return this.id;
     }
-    setDogID(id: number): void {
-        this.dogId = id;
+    setId(id: number): void {
+        this.id = id;
     }
 
     public makeNoise(): void {

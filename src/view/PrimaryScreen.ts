@@ -3,7 +3,6 @@ import DoctorController from '../control/DoctorController';
 import ClientController from '../control/ClientController';
 import { Genre } from '../model/Enum';
 import AnimalController from '../control/AnimalController';
-import Dog from '../model/Dog';
 import ManagerAnimalController from '../control/ManagerAnimalController';
 
 export default class PrimaryScreen {
@@ -38,11 +37,15 @@ export default class PrimaryScreen {
                 case '2':
                     // this.doctorController.listAllDoctors();
                     this.clientController.listAllClients();
-                    this.animalController.listAllAnimals();
+                    this.animalController.findMyAnimals(
+                        this.clientController.getClient(0)?.animals,
+                    );
                     break;
                 case '3':
                     this.registerAnimal();
-
+                    break;
+                case '4':
+                    this.animalController.listAllAnimals();
                     break;
                 case '5':
                     showScreen = true;
@@ -87,9 +90,7 @@ export default class PrimaryScreen {
         let client = this.clientController.getNewClient(name, age, id, genre);
 
         this.clientController.registerNewClient(client);
-        console.log('Deu certo');
         this.id = this.id + 1;
-        console.log(this.clientController.getClient(0));
     }
 
     public registerAnimal(): void {
@@ -105,9 +106,8 @@ export default class PrimaryScreen {
         this.animalController.registerAnimal(test);
         this.managerController.linkAnimalClient(
             this.clientController.getClient(0),
-            test.getDogID(),
+            test.getId(),
         );
-        console.log();
         this.id = this.id + 1;
     }
 }

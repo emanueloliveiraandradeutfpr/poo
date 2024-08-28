@@ -15,6 +15,7 @@ class PrimaryScreen {
         this.prompt = (0, prompt_sync_1.default)();
     }
     getFirstScreen() {
+        var _a;
         let showScreen = false;
         while (!showScreen) {
             // Get user input
@@ -30,10 +31,13 @@ class PrimaryScreen {
                 case '2':
                     // this.doctorController.listAllDoctors();
                     this.clientController.listAllClients();
-                    this.animalController.listAllAnimals();
+                    this.animalController.findMyAnimals((_a = this.clientController.getClient(0)) === null || _a === void 0 ? void 0 : _a.animals);
                     break;
                 case '3':
                     this.registerAnimal();
+                    break;
+                case '4':
+                    this.animalController.listAllAnimals();
                     break;
                 case '5':
                     showScreen = true;
@@ -68,9 +72,7 @@ class PrimaryScreen {
         genre === 0 ? (genre = Enum_1.Genre.Male) : (genre = Enum_1.Genre.Female);
         let client = this.clientController.getNewClient(name, age, id, genre);
         this.clientController.registerNewClient(client);
-        console.log('Deu certo');
         this.id = this.id + 1;
-        console.log(this.clientController.getClient(0));
     }
     registerAnimal() {
         let id = this.id;
@@ -81,8 +83,7 @@ class PrimaryScreen {
         // let test = this.animalController.getNewDog(id, name, age, breed, weight);
         let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
         this.animalController.registerAnimal(test);
-        this.managerController.linkAnimalClient(this.clientController.getClient(0), test.getDogID());
-        console.log();
+        this.managerController.linkAnimalClient(this.clientController.getClient(0), test.getId());
         this.id = this.id + 1;
     }
 }

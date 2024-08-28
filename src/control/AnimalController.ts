@@ -32,4 +32,12 @@ export default class AnimalController {
     registerAnimal<A extends Animal>(animal: A): void {
         this.datacenter.addNewAnimal(animal);
     }
+
+    findMyAnimals(ids: number[]): void {
+        ids?.forEach((id) => {
+            let res = this.datacenter.animals.find((animal) => animal.getId() === id);
+
+            console.log(res);
+        });
+    }
 }

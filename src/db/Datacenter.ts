@@ -3,8 +3,6 @@
 
 import Doctor from '../model/Doctor';
 import Client from '../model/Client';
-import Dog from '../model/Dog';
-import Cat from '../model/Cat';
 import Animal from '../model/Animal';
 
 // FoodProduct e CleaningProduct
@@ -29,14 +27,6 @@ export default class Datacenter {
         this.clients.push(client);
     }
 
-    public findClient(id: number): Client | undefined {
-        let client = this.clients.find((client) => {
-            console.log('Ola');
-
-            client.getId() === id;
-        });
-        return client;
-    }
     public removeClient(id: number): void {
         this.clients.splice(id, 1);
     }
@@ -50,11 +40,11 @@ export default class Datacenter {
     public addNewAnimal<A extends Animal>(animal: A): void {
         this.animals.push(animal);
     }
-    public removeDog(id: number): void {
+    public removeAnimal(id: number): void {
         this.animals.splice(id, 1);
     }
 
-    public getDogsSize(): number {
+    public getAnimalSize(): number {
         return this.animals.length;
     }
 }
