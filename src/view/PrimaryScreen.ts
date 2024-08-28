@@ -21,7 +21,7 @@ export default class PrimaryScreen {
             // Get user input
             //console.clear();
             let choice = this.prompt(
-                'Escolha:\n1 - Cadastro\n2 - Listar\n3 - Registrar animal\n5 - Sair\n',
+                'Escolha:\n1 - Cadastro\n2 - Listar todos os clientes\n3 - Registrar animal\n4 - Listar meus animais 5 - Sair\n',
             );
 
             switch (choice) {
@@ -29,23 +29,23 @@ export default class PrimaryScreen {
                     // let doctor: Doctor = this.doctorController.getNewDoctor();
                     // this.registerDoctor(doctor);
 
-                    // this.registerHuman();
-                    this.makeMe();
+                    this.registerHuman();
+                    // this.makeMe();
 
                     break;
 
                 case '2':
                     // this.doctorController.listAllDoctors();
                     this.clientController.listAllClients();
-                    this.animalController.findMyAnimals(
-                        this.clientController.getClient(0)?.animals,
-                    );
+
                     break;
                 case '3':
                     this.registerAnimal();
                     break;
                 case '4':
-                    this.animalController.listAllAnimals();
+                    this.animalController.findMyAnimals(
+                        this.clientController.getClient(0)?.animals,
+                    );
                     break;
                 case '5':
                     showScreen = true;
@@ -96,17 +96,17 @@ export default class PrimaryScreen {
     public registerAnimal(): void {
         let id = this.id;
 
-        // let name = this.prompt('Digite o nome do seu pet: ');
-        // let age = Number(this.prompt('Digite a idade do seu pet: '));
-        // let breed = this.prompt('Digite a raça do seu pet: ');
-        // let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
-        // let test = this.animalController.getNewDog(id, name, age, breed, weight);
-        let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
+        let name = this.prompt('Digite o nome do seu pet: ');
+        let age = Number(this.prompt('Digite a idade do seu pet: '));
+        let breed = this.prompt('Digite a raça do seu pet: ');
+        let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
+        let animal = this.animalController.getNewDog(id, name, age, breed, weight);
+        //let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
 
-        this.animalController.registerAnimal(test);
+        this.animalController.registerAnimal(animal);
         this.managerController.linkAnimalClient(
             this.clientController.getClient(0),
-            test.getId(),
+            animal.getId(),
         );
         this.id = this.id + 1;
     }
