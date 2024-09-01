@@ -12,6 +12,11 @@ class ClientController {
     getNewClient(name, age, id, genre) {
         return new Client_1.default(name, age, id, genre);
     }
+    findClient(name) {
+        let res = this.datacenter.clients.find((client) => client.getName().toLowerCase() === name.toLowerCase());
+        console.log(res);
+        return res;
+    }
     registerNewClient(client) {
         this.datacenter.addNewClient(client);
     }
@@ -19,6 +24,8 @@ class ClientController {
         console.log(this.datacenter.clients);
     }
     getClient(id) {
+        console.log(this.datacenter.clients);
+        console.log(id);
         return this.datacenter.clients[id];
     }
 }

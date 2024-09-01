@@ -4,6 +4,7 @@
 import Doctor from '../model/Doctor';
 import Client from '../model/Client';
 import Animal from '../model/Animal';
+import Consult from '../model/Consult';
 
 // FoodProduct e CleaningProduct
 export default class Datacenter {
@@ -46,5 +47,18 @@ export default class Datacenter {
 
     public getAnimalSize(): number {
         return this.animals.length;
+    }
+
+    public consults: Consult[] = [];
+
+    public addNewConsult(consult: Consult) {
+        this.consults.push(consult);
+    }
+
+    removeConsult(id: number): void {
+        this.consults.splice(id, 1);
+    }
+    public getConsultSize(): number {
+        return this.consults.length;
     }
 }

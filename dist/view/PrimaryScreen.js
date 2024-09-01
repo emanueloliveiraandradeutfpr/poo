@@ -5,39 +5,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const Enum_1 = require("../model/Enum");
+// import ConsultScreen from './ConsultScreen';
+const MyError_1 = __importDefault(require("../model/MyError"));
 class PrimaryScreen {
-    constructor(doctorController, clientController, animalController, managerController, id = 0) {
+    constructor(doctorController, clientController, pageController) {
         this.doctorController = doctorController;
         this.clientController = clientController;
-        this.animalController = animalController;
-        this.managerController = managerController;
-        this.id = id;
+        this.pageController = pageController;
+        this.id = 0;
         this.prompt = (0, prompt_sync_1.default)();
     }
     getFirstScreen() {
-        var _a;
         let showScreen = false;
         while (!showScreen) {
             // Get user input
             //console.clear();
-            let choice = this.prompt('Escolha:\n1 - Cadastro\n2 - Listar\n3 - Registrar animal\n5 - Sair\n');
+            let choice = this.prompt('Escolha:\n1 - Cadastro de clientes\n2 - Buscar cliente\n3 - Listar todos os clientes \n5 - Sair\n');
             switch (choice) {
                 case '1':
-                    // let doctor: Doctor = this.doctorController.getNewDoctor();
-                    // this.registerDoctor(doctor);
-                    // this.registerHuman();
+                    //this.registerHuman();
                     this.makeMe();
                     break;
                 case '2':
-                    // this.doctorController.listAllDoctors();
-                    this.clientController.listAllClients();
-                    this.animalController.findMyAnimals((_a = this.clientController.getClient(0)) === null || _a === void 0 ? void 0 : _a.animals);
+                    let name = this.prompt('Digite o nome do cliente: ');
+                    try {
+                        let res = this.clientController.findClient(name);
+                        if (!res) {
+                            throw new MyError_1.default('Cliente não encontrado');
+                        }
+                        else {
+                            this.clientId = res.getId();
+                            showScreen = true;
+                            this.pageController.goToConsult(this.clientId);
+                            break;
+                        }
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
                     break;
                 case '3':
-                    this.registerAnimal();
-                    break;
-                case '4':
-                    this.animalController.listAllAnimals();
+                    this.clientController.listAllClients();
                     break;
                 case '5':
                     showScreen = true;
@@ -72,18 +80,6 @@ class PrimaryScreen {
         genre === 0 ? (genre = Enum_1.Genre.Male) : (genre = Enum_1.Genre.Female);
         let client = this.clientController.getNewClient(name, age, id, genre);
         this.clientController.registerNewClient(client);
-        this.id = this.id + 1;
-    }
-    registerAnimal() {
-        let id = this.id;
-        // let name = this.prompt('Digite o nome do seu pet: ');
-        // let age = Number(this.prompt('Digite a idade do seu pet: '));
-        // let breed = this.prompt('Digite a raça do seu pet: ');
-        // let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
-        // let test = this.animalController.getNewDog(id, name, age, breed, weight);
-        let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
-        this.animalController.registerAnimal(test);
-        this.managerController.linkAnimalClient(this.clientController.getClient(0), test.getId());
         this.id = this.id + 1;
     }
 }

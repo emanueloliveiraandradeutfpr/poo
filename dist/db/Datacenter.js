@@ -8,6 +8,7 @@ class Datacenter {
         this.doctors = [];
         this.clients = [];
         this.animals = [];
+        this.consults = [];
     }
     addNewDoctor(doctor) {
         this.doctors.push(doctor);
@@ -35,6 +36,15 @@ class Datacenter {
     }
     getAnimalSize() {
         return this.animals.length;
+    }
+    addNewConsult(consult) {
+        this.consults.push(consult);
+    }
+    removeConsult(id) {
+        this.consults.splice(id, 1);
+    }
+    getConsultSize() {
+        return this.consults.length;
     }
 }
 exports.default = Datacenter;

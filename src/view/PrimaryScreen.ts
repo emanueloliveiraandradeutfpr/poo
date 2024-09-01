@@ -2,16 +2,18 @@ import promptSync from 'prompt-sync';
 import DoctorController from '../control/DoctorController';
 import ClientController from '../control/ClientController';
 import { Genre } from '../model/Enum';
-import AnimalController from '../control/AnimalController';
-import ManagerAnimalController from '../control/ManagerAnimalController';
+// import ConsultScreen from './ConsultScreen';
+import MyError from '../model/MyError';
+import Doctor from '../model/Doctor';
+import PageController from '../control/PageController';
 
 export default class PrimaryScreen {
+    private clientId!: number;
+    private id = 0;
     constructor(
         private doctorController: DoctorController,
         private clientController: ClientController,
-        private animalController: AnimalController,
-        private managerController: ManagerAnimalController,
-        private id = 0,
+        private pageController: PageController,
     ) {}
     private prompt = promptSync();
 
@@ -21,31 +23,34 @@ export default class PrimaryScreen {
             // Get user input
             //console.clear();
             let choice = this.prompt(
-                'Escolha:\n1 - Cadastro\n2 - Listar todos os clientes\n3 - Registrar animal\n4 - Listar meus animais 5 - Sair\n',
+                'Escolha:\n1 - Cadastro de clientes\n2 - Buscar cliente\n3 - Listar todos os clientes \n5 - Sair\n',
             );
 
             switch (choice) {
                 case '1':
-                    // let doctor: Doctor = this.doctorController.getNewDoctor();
-                    // this.registerDoctor(doctor);
-
-                    this.registerHuman();
-                    // this.makeMe();
-
+                    //this.registerHuman();
+                    this.makeMe();
                     break;
 
                 case '2':
-                    // this.doctorController.listAllDoctors();
-                    this.clientController.listAllClients();
+                    let name = this.prompt('Digite o nome do cliente: ');
 
+                    try {
+                        let res = this.clientController.findClient(name);
+                        if (!res) {
+                            throw new MyError('Cliente não encontrado');
+                        } else {
+                            this.clientId = res.getId();
+                            showScreen = true;
+                            this.pageController.goToConsult(this.clientId);
+                            break;
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    }
                     break;
                 case '3':
-                    this.registerAnimal();
-                    break;
-                case '4':
-                    this.animalController.findMyAnimals(
-                        this.clientController.getClient(0)?.animals,
-                    );
+                    this.clientController.listAllClients();
                     break;
                 case '5':
                     showScreen = true;
@@ -69,7 +74,6 @@ export default class PrimaryScreen {
 
     public makeMe(): void {
         let id = this.id;
-
         let client = this.clientController.getNewClient('Emanuel', 22, id, Genre.Male);
         this.clientController.registerNewClient(client);
         this.id = this.id + 1;
@@ -90,24 +94,6 @@ export default class PrimaryScreen {
         let client = this.clientController.getNewClient(name, age, id, genre);
 
         this.clientController.registerNewClient(client);
-        this.id = this.id + 1;
-    }
-
-    public registerAnimal(): void {
-        let id = this.id;
-
-        let name = this.prompt('Digite o nome do seu pet: ');
-        let age = Number(this.prompt('Digite a idade do seu pet: '));
-        let breed = this.prompt('Digite a raça do seu pet: ');
-        let weight = Number(this.prompt('Digite o peso do seu pet em Kg: '));
-        let animal = this.animalController.getNewDog(id, name, age, breed, weight);
-        //let test = this.animalController.getNewDog(id, 'test', 2, 'poodle', 2);
-
-        this.animalController.registerAnimal(animal);
-        this.managerController.linkAnimalClient(
-            this.clientController.getClient(0),
-            animal.getId(),
-        );
         this.id = this.id + 1;
     }
 }
