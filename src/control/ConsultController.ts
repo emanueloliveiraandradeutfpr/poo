@@ -8,8 +8,8 @@ import { Symptoms } from '../model/Symptoms';
 export default class ConsultController {
     private datacenter: Datacenter = new Datacenter();
 
-    getNewConsult(doctor: Doctor, client: Client, symptoms: Symptoms[], animal?: Animal) {
-        return new Consult(doctor, client, symptoms, animal);
+    getNewConsult(doctor: Doctor, client: Client, animal: Animal, symptoms?: Symptoms[]) {
+        return new Consult(doctor, client, animal, symptoms);
     }
 
     registerConsult(consult: Consult): void {

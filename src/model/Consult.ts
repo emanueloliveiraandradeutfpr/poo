@@ -7,15 +7,15 @@ import { Symptoms } from './Symptoms';
 export default class Consult implements IConsult {
     doctor!: Doctor;
     client!: Client;
-    symptoms!: Symptoms[];
-    animal?: Animal;
+    symptoms?: Symptoms[];
+    animal!: Animal;
 
-    constructor(doctor: Doctor, client: Client, symptoms: Symptoms[], animal?: Animal) {
+    constructor(doctor: Doctor, client: Client, animal: Animal, symptoms?: Symptoms[]) {
         this.doctor = doctor;
         this.client = client;
-        this.symptoms = symptoms;
-        if (animal) {
-            this.animal = animal;
+        this.animal = animal;
+        if (symptoms) {
+            this.symptoms = symptoms;
         }
     }
 }

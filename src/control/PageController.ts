@@ -1,7 +1,8 @@
+import Client from '../model/Client';
 import ConsultScreen from '../view/ConsultScreen';
 import AnimalController from './AnimalController';
 import ClientController from './ClientController';
-import DoctorController from './DoctorController';
+import ConsultController from './ConsultController';
 import ManagerAnimalController from './ManagerAnimalController';
 
 export default class PageController {
@@ -9,8 +10,9 @@ export default class PageController {
         new ClientController(),
         new AnimalController(),
         new ManagerAnimalController(),
+        new ConsultController(),
     );
-    public goToConsult(id: number): void {
-        this.consultScreen.getConsultScreen(id);
+    public goToConsult(client: Client): void {
+        this.consultScreen.getConsultScreen(client);
     }
 }

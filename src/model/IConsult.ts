@@ -6,6 +6,6 @@ import { Symptoms } from './Symptoms';
 export default interface IConsult {
     doctor: Doctor;
     client: Client;
-    symptoms: Symptoms[];
-    animal?: Animal;
+    symptoms?: Symptoms[];
+    animal: Animal;
 }

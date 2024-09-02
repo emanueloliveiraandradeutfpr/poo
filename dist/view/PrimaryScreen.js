@@ -35,8 +35,7 @@ class PrimaryScreen {
                         }
                         else {
                             this.clientId = res.getId();
-                            showScreen = true;
-                            this.pageController.goToConsult(this.clientId);
+                            this.pageController.goToConsult(this.clientController.getClient(this.clientId));
                             break;
                         }
                     }
